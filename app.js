@@ -48,6 +48,12 @@ class UI {
     list.appendChild(row);
   }
 
+  static deleteBook(el) {
+    if (el.classList.contains('delete')) {
+      el.parentElement.parentElement.remove();
+    }
+  }
+
   // static clearFields() {
   //   document.querySelector('#title').value = '';
   //   document.querySelector('#author').value = '';
@@ -73,16 +79,20 @@ document.querySelector('#book-form').addEventListener('submit', e => {
   const author = document.querySelector('#author').value;
   const isbn = document.querySelector('#isbn').value;
 
-  //Instantiate Book
-
-  const book = new Book(title, author, isbn);
-
-  // Add Book to UI
-  UI.addBookLIst(book);
+  //validation
+  if (title === '' || author === '' || isbn === '') {
+    alert('Please Input Field Values');
+  } else {
+    //Instantiate Book
+    const book = new Book(title, author, isbn);
+    // Add Book to UI
+    UI.addBookLIst(book);
+  }
 });
 
 //CLEAR FORM AFTER SUBMISSION
 // UI.clearFields();
+
 function submitForm() {
   document.contactform.submit();
   document.contactform.reset();
