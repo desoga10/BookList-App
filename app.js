@@ -118,6 +118,9 @@ document.querySelector('#book-form').addEventListener('submit', e => {
     const book = new Book(title, author, isbn);
     // Add Book to UI
     UI.addBookLIst(book);
+
+    //Add books to store
+    Store.addBook(book);
   }
 });
 
@@ -131,5 +134,9 @@ function submitForm() {
 
 //Event to Remove a Book
 document.querySelector('#booklist').addEventListener('click', e => {
+  //Remove Book from UI
   UI.deleteBook(e.target);
+
+  //Remove Book From Store
+  Store.removeBook(e.target.parentElement.previousElementSibling.textContent);
 });
